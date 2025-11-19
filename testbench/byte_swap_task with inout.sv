@@ -19,6 +19,6 @@ initial begin
 
     byte_swap_task(my_byte); //Call the task(inout modifies original)
 
-    $display(After swap: %h", my_byte);
+    $display("After swap: %h", my_byte);
 end
 endmodule
