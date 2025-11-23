@@ -4,7 +4,7 @@ module byte_swap_tb;
 task automatic byte_swap_task(inout logic [7:0] data);
     logic [3:0] upper, lower;
     begin
-        upper = data[7:4];  //Extract upper nibble 
+        upper = data[7:4];  //Extract upper nibble
         lower = data[3:0];  //Extract lower nibble
         data = {lower, upper}; //swap nibbles
     end
