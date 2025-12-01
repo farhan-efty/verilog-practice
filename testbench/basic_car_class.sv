@@ -8,25 +8,38 @@ class Car;
   function void accelerate();
     speed += 10;  //Increase speed by 10
   endfunction
-endclass
 
+  //New brake method (clamped at 0)
+  function void brake(int decrement);
+    speed -= decrement;
+
+    //Clamp speed to 0
+    if (speed < 0) speed = 0;
+  endfunction
+endclass
 
 //Module to test the car class
 module car_test;
   initial begin
     //Instantiate a car object
-    Car my_car = new();
+    Car car1 = new();
+    Car car2 = new();
 
     //Set the model property
-    my_car.model = "Sedan";
+    car1.model = "Sedan";
+    car2.model = "SUV";
 
     //Accelerate the car twice
-    my_car.accelerate();
-    my_car.accelerate();
+    car1.accelerate();
+    car2.accelerate();
+
+    //Apply brake only to car1
+    car1.brake(7);
 
     //Display the car's model and final speed
-    $display("Car Model: %s", my_car.model);
-    $display("Final Speed: %0d", my_car.speed);  //Expected: 20
+    $display("-----Car Status-----");
+    $display("Model: %s, Speed: %0d", car1.model, car1.speed); 
+    $display("Model: %s, Speed: %0d", car2.model, car2.speed); 
 
   end
 endmodule
